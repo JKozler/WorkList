@@ -1,0 +1,92 @@
+﻿<Window x:Class="PracovniDiar.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PracovniDiar"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Title="MainWindow" Height="700" Width="1250">
+    <Border>
+        <Border.Background>
+            <ImageBrush ImageSource="IMG_0043.JPEG"/>
+        </Border.Background>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="0.04*"/>
+                <ColumnDefinition Width="6*"/>
+            </Grid.ColumnDefinitions>
+            <Border>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="10*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <ListBox Grid.Row="0" x:Name="lblWorkers" SelectionChanged="SelectedChangedLbl"></ListBox>
+                    <Border Grid.Row="1">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button x:Name="addUser" Background="#FF7DF1FF">
+                                <materialDesign:PackIcon Kind="Add"/>
+                            </Button>
+                            <Button Grid.Column="1" x:Name="removeUser" Background="#FF005B66">
+                                <materialDesign:PackIcon Kind="Remove"/>
+                            </Button>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </Border>
+            <Border Grid.Column="1" Background="Black"></Border>
+            <Border Visibility="Hidden" x:Name="infoAboutUsers" Grid.Column="2">
+                <Border.Background>
+                    <SolidColorBrush Color="White" Opacity="0.75"/>
+                </Border.Background>
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Label x:Name="nameOfWorker" FontSize="20" Content="" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" FontStretch="SemiCondensed" FontWeight="Bold" TextOptions.TextHintingMode="Animated"></Label>
+                    <Label HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="15" Content="Název práce:" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" FontStretch="SemiCondensed" FontWeight="Bold" TextOptions.TextHintingMode="Animated"></Label>
+                    <TextBox Width="315" HorizontalAlignment="Left" x:Name="actualWork" Grid.Row="1" Grid.Column="2" FontSize="18" Background="LightGray" Height="30" VerticalAlignment="Bottom" Grid.ColumnSpan="3"></TextBox>
+                    <Label HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="15" Content="Popis práce:" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" FontStretch="SemiCondensed" FontWeight="Bold" TextOptions.TextHintingMode="Animated"></Label>
+                    <TextBlock Width="700" HorizontalAlignment="Left" x:Name="popisWork" Grid.Row="2" Grid.Column="2" FontSize="18" Background="LightGray" Height="30" VerticalAlignment="Bottom" Grid.ColumnSpan="7"></TextBlock>
+                    <Label HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="15" Content="Přibližné ukončení:" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" FontStretch="SemiCondensed" FontWeight="Bold" TextOptions.TextHintingMode="Animated"></Label>
+                    <DatePicker Width="315" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Background="LightGray"></DatePicker>
+                    
+                    <Button Grid.Column="9" Grid.Row="8" x:Name="saveBtn" Background="#FF7DF1FF">
+                        <materialDesign:PackIcon Kind="ContentSave"/>
+                    </Button>
+                    <Button Grid.Column="8" Grid.Row="8" x:Name="showAll" Background="#FF005B66">
+                        <materialDesign:PackIcon Kind="Show"/>
+                    </Button>
+                </Grid>
+
+            </Border>
+        </Grid>
+    </Border>
+</Window>
