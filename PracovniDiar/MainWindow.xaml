@@ -7,7 +7,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        Title="MainWindow" Height="700" Width="1250">
+        Title="Work List" Height="700" Width="1250">
     <Border>
         <Border.Background>
             <ImageBrush ImageSource="IMG_0043.JPEG"/>
@@ -24,7 +24,8 @@
                         <RowDefinition Height="10*"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <ListBox Grid.Row="0" x:Name="lblWorkers" SelectionChanged="SelectedChangedLbl"></ListBox>
+                    <ListBox Visibility="Hidden" Grid.Row="0" x:Name="lblWorkers" SelectionChanged="SelectedChangedLbl" MouseDoubleClick="LblMouseDoubleClick"></ListBox>
+                    <DataGrid ItemsSource="{Binding}" x:Name="data" Grid.Row="0"></DataGrid>
                     <Border Grid.Row="1">
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -34,7 +35,7 @@
                             <Button x:Name="addUser" Background="#FF7DF1FF">
                                 <materialDesign:PackIcon Kind="Add"/>
                             </Button>
-                            <Button Grid.Column="1" x:Name="removeUser" Background="#FF005B66">
+                            <Button Grid.Column="1" x:Name="removeUser" Background="#FF005B66" Click="removeUser_Click">
                                 <materialDesign:PackIcon Kind="Remove"/>
                             </Button>
                         </Grid>
@@ -42,7 +43,7 @@
                 </Grid>
             </Border>
             <Border Grid.Column="1" Background="Black"></Border>
-            <Border Visibility="Hidden" x:Name="infoAboutUsers" Grid.Column="2">
+            <Border Visibility="Visible" x:Name="infoAboutUsers" Grid.Column="2">
                 <Border.Background>
                     <SolidColorBrush Color="White" Opacity="0.75"/>
                 </Border.Background>
@@ -74,10 +75,15 @@
                     <Label HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="15" Content="Název práce:" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" FontStretch="SemiCondensed" FontWeight="Bold" TextOptions.TextHintingMode="Animated"></Label>
                     <TextBox Width="315" HorizontalAlignment="Left" x:Name="actualWork" Grid.Row="1" Grid.Column="2" FontSize="18" Background="LightGray" Height="30" VerticalAlignment="Bottom" Grid.ColumnSpan="3"></TextBox>
                     <Label HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="15" Content="Popis práce:" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" FontStretch="SemiCondensed" FontWeight="Bold" TextOptions.TextHintingMode="Animated"></Label>
-                    <TextBlock Width="700" HorizontalAlignment="Left" x:Name="popisWork" Grid.Row="2" Grid.Column="2" FontSize="18" Background="LightGray" Height="30" VerticalAlignment="Bottom" Grid.ColumnSpan="7"></TextBlock>
+                    <TextBox Width="700" HorizontalAlignment="Left" x:Name="popisWork" Grid.Row="2" Grid.Column="2" FontSize="18" Background="LightGray" Height="30" VerticalAlignment="Bottom" Grid.ColumnSpan="7"></TextBox>
                     <Label HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="15" Content="Přibližné ukončení:" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" FontStretch="SemiCondensed" FontWeight="Bold" TextOptions.TextHintingMode="Animated"></Label>
-                    <DatePicker Width="315" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Background="LightGray"></DatePicker>
-                    
+                    <DatePicker Width="210" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Background="LightGray"></DatePicker>
+                    <Label HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="15" Content="Poznámka:" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" FontStretch="SemiCondensed" FontWeight="Bold" TextOptions.TextHintingMode="Animated"></Label>
+                    <TextBox Width="315" HorizontalAlignment="Left" x:Name="poznamkaKPraci" Grid.Row="4" Grid.Column="2" FontSize="18" Background="LightGray" Height="30" VerticalAlignment="Bottom" Grid.ColumnSpan="3"></TextBox>
+                    <Label HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="15" Content="Ukončeno?:" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" FontStretch="SemiCondensed" FontWeight="Bold" TextOptions.TextHintingMode="Animated"></Label>
+                    <CheckBox FontSize="20" VerticalAlignment="Bottom" HorizontalAlignment="Left" Grid.Row="5" Grid.Column="2" x:Name="workDone" Content="Ano" Background="#FF73FD00" BorderBrush="Red" Checked="ChBox1" ></CheckBox>
+                    <CheckBox Grid.Row="5" FontSize="20" VerticalAlignment="Bottom" Grid.Column="3" HorizontalAlignment="Left" IsChecked="True" x:Name="workNotDone" Content="Ne" Background="Red" BorderBrush="#FF97FF00" Checked="ChBox2"></CheckBox>
+
                     <Button Grid.Column="9" Grid.Row="8" x:Name="saveBtn" Background="#FF7DF1FF">
                         <materialDesign:PackIcon Kind="ContentSave"/>
                     </Button>
